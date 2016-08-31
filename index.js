@@ -2,11 +2,10 @@
 
 var Botkit = require('botkit');
 var controller = Botkit.slackbot();
-var secretToken = require('secret').token;
+var secretToken = require('./secret');
 
-console.log(secretToken);
 
-var bot = controller.spawn({ token: secretToken });
+var bot = controller.spawn({ token: secretToken().token });
 var currentMessage; // this should probably be an array in case a second link is shared before metadata comes back for the first one
 
 var http = require('http'),
