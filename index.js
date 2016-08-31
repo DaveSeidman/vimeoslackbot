@@ -2,7 +2,11 @@
 
 var Botkit = require('botkit');
 var controller = Botkit.slackbot();
-var bot = controller.spawn({ token: `xoxb-74706967971-feivKvzYsYpAU0jUpBpHsV6Q` });
+var secretToken = require('secret').token;
+
+console.log(secretToken);
+
+var bot = controller.spawn({ token: secretToken });
 var currentMessage; // this should probably be an array in case a second link is shared before metadata comes back for the first one
 
 var http = require('http'),
@@ -44,6 +48,7 @@ function callback(response) {
                     ]
                 };
 
+            console.log("found metadata", message);
             bot.reply(currentMessage, message);
         }
         else {
