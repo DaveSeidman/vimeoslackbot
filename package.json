@@ -1,0 +1,14 @@
+{
+  "name": "vimeobot",
+  "version": "1.0.0",
+  "description": "a simple slackbot that listens for vimeo links and fills in metadata",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dave seidman",
+  "license": "ISC",
+  "dependencies": {
+    "botkit": "^0.2.2"
+  }
+}
