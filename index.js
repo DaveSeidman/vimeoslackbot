@@ -58,15 +58,16 @@ function callback(response) {
 
 controller.hears('vimeo.com/',['direct_message','direct_mention','mention','ambient'], (bot,message) => {
 
-    console.log("vimeo link shared");
-    var videoID = message.text.substr(message.text.indexOf('vimeo.com') + 10, 9);
+    var pattern = /\d{9}/g,
+        videoID = message.text.match(pattern);
 
-    options.host = `vimeo.com`;
-    options.path = `/api/v2/video/${videoID}.json`;
-
-    //console.log("making request", options);
-    http.request(options, callback).end();
-
-    currentMessage = message;
-    //bot.reply(message, `http://vimeo.com/api/v2/video/${videoID}.json`);
+    if(videoID) {
+        options.host = `vimeo.com`;
+        options.path = `/api/v2/video/${videoID}.json`;
+        http.request(options, callback).end();
+        currentMessage = message;
+    }
+    else {
+        console.log("couldn't find a 9 digit video id");
+    }
 });
