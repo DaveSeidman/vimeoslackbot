@@ -34,7 +34,7 @@ function callback(response) {
             var metadata = JSON.parse(str)[0],
                 url = metadata.url,
                 title = metadata.title,
-                description = metadata.description.substring(0,100) + '...',
+                description = metadata.description.substring(0,100).replace(/<br\s*[\/]?>/gi, "\n") + '...',
                 thumbnail = metadata.thumbnail_large,
                 message = {
                     "attachments" : [
